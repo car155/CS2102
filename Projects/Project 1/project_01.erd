@@ -1,0 +1,38 @@
+[Users](email*,name);
+[Creators](country);
+[Backers](address(street,house_no,zip_code,country));
+Users === {Creators,Backers};
+
+[Projects](id*, name, goal, deadline);
+
+<Creates>();
+Creators --- Creates;
+Projects --> Creates;
+
+[[Updates]](time*);
+<<Issues>>();
+Projects --- Issues;
+Updates ==> Issues;
+
+[Employees](id*, name, salary);
+<Verifies>(date);
+Employees --- Verifies;
+Users --> Verifies;
+
+<RefundRequest>(submission_date, processed_date, status);
+Backers --- RefundRequest;
+Projects --- RefundRequest;
+Employees --- RefundRequest;
+
+[[ProjectRewardLevel]](name*, min_amount);
+<<Has>>();
+Projects --- Has;
+ProjectRewardLevel ==> Has;
+
+[<Backs>]();
+Projects --- Backs;
+Backers --- Backs;
+
+<At>(amount);
+Backs --- At;
+ProjectRewardLevel --> At;
